@@ -10,11 +10,10 @@ Date::Date(int y, int m, int d){
 	setDate(y,m,d);
 }
 
-Date::Date(Date& d){
+Date::Date(const Date& d){
 	setDate(d.year,d.month,d.day);
 	//cout<<endl<<"in Date COPY ctor"<<endl;
 }
-
 
 
 //setters
@@ -42,23 +41,23 @@ void Date::setDate(int y, int m, int d){
 	setYear(y);
 }
 
-void Date::setDate(Date& d){
+void Date::setDate(const Date& d){
 	setDate(d.year, d.month, d.day);
 }
 
 
 //getters
-int Date::getDay() { return day; }
-int Date::getMonth() { return month; }
-int Date::getYear() { return year; }
-string Date::getMonthName() {
+int Date::getDay() const{ return day; }
+int Date::getMonth() const{ return month; }
+int Date::getYear() const { return year; }
+string Date::getMonthName() const{
 	string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	return months[month-1];
 }
 
 //other
 
-bool Date::lessThan( Date& d) {
+bool Date::lessThan(const Date& d) const{
 	if (year < d.year) return true;
 	if (year > d.year) return false;
 	//years are equal
@@ -68,11 +67,6 @@ bool Date::lessThan( Date& d) {
 	return (day < d.day);
 }
 
-bool Date::equals( Date& d) {
-	return (year == d.year &&
-			month == d.month &&
-			day == d.day);
-}
 
 void Date::incDate(){
 	day += 1;
@@ -93,12 +87,12 @@ void Date::addDays(int num){
 	}
 }
 
-void Date::print() {
+void Date::print() const{
 	cout << getMonthName()<<" "<<day<<", "<<year;
 }
 
 
-int Date::getMaxDay() {
+int Date::getMaxDay() const{
 	switch(getMonth()){
 		case 4:
 		case 6:

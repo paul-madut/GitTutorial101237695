@@ -1,30 +1,33 @@
 #include "File.h"
-#include <iostream>
 
-File::File(std::string &name, std::string &content, Date &date)
-    : name(name), content(content), lastModified(date)
-{
+File::File(const string& name, const string& content,  const Date& date) 
+    : name(name), content(content), lastModified(date) {
+    
 }
 
+File::File(const File& e): File( e.name, e.content, e.lastModified){  }
 
-bool File::lessThan(File &other) const
-{
-    return lastModified.lessThan(other.lastModified);
+File::~File(){}
+
+void File::print() const{
+	cout <<"File:          "<<name<<endl;
+	cout <<"Last modified: ";
+	lastModified.print(); cout<<endl;
 }
 
-void File::print() const
-{
-    std::cout << "File: " << name << "\nDate added: ";
-    lastModified.print();
+bool File::lessThan(const File& other) const {
+    return name < other.name || (name == other.name && lastModified.lessThan(other.lastModified));
 }
 
-void File::printContents() const
-{
-    print();
-    std::cout << "Content: " << content << std::endl;
+bool File::equals(const File& other) const {
+    return name == other.name && (!lastModified.lessThan(other.lastModified) && !other.lastModified.lessThan(lastModified));
 }
 
-std::string File::getName() const
-{
-    return name;
+void File::printContents() const{
+	print();
+	cout <<endl<< content<<endl<<endl;
+}
+
+std::string File::getName() const{
+	return name;
 }

@@ -14,31 +14,30 @@ class Date {
 		//constructor
 		Date();
 		Date(int year, int month, int day);
-		Date( Date&);
+		Date(const Date&);
 		
 		//setters
 		void setDay( int);
 		void setMonth(int);
 		void setYear(int);
 		void setDate(int, int, int);
-		void setDate(Date&);
+		void setDate(const Date&);
 		
 		//getters
-		int getDay() ;
-		int getMonth() ;
-		int getYear() ;
-		string getMonthName() ;
+		int getDay() const;
+		int getMonth() const;
+		int getYear() const;
+		string getMonthName() const;
 		
 		//other
 		void incDate();
 		void addDays(int);
-		bool lessThan( Date& d) ;
-		bool equals( Date& d) ;
-		void print() ;
+		bool lessThan(const Date& d) const;
+		void print() const;
 	
 	private:
 		//functions
-		int getMaxDay() ;	
+		int getMaxDay() const;	
 	
 		//variables
 		int day;

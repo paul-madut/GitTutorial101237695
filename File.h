@@ -1,22 +1,37 @@
+
 #ifndef FILE_H
 #define FILE_H
 
+#include <iostream>
 #include <string>
+#include <iomanip>
 #include "Date.h"
 
+using namespace std;
+
+
 class File {
-    std::string name;
-    std::string content;
-    Date& lastModified;
+		
+	public:
+		//constructor
+		File(const string& name, const string& content,  const Date& date);
+		~File();
+		
+		//copy constructor
+		File(const File&);
+		bool lessThan(const File&) const;
+		bool equals(const File&) const;
 
-public:
-    File( std::string& name,  std::string& content,  Date& date);
-    File();
-    bool lessThan(File& other) const;
-    void print() const;
-    void printContents() const;
-
-    std::string getName() const;
+		std::string getName() const;
+		
+		//other
+		void print() const;
+		void printContents() const;
+	
+	private:
+		const Date& lastModified;
+		string name;
+		string content;
+	
 };
-
 #endif
